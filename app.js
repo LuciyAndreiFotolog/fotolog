@@ -8,12 +8,15 @@ const passport = require('passport');
 
 // Connection to DB
 require('./config/db.config');
+require("./config/passport.config");
 
 const app = express();
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static("public"));
 app.use(logger('dev'));
+app.use(passport.initialize());
+app.use(passport.session());
 app.set('views', __dirname + '/views');
 app.set('view engine', 'hbs');
 hbs.registerPartials(__dirname + '/views/partials');
