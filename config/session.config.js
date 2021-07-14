@@ -1,12 +1,12 @@
 const session = require("express-session")
-const Mongostore = require('connect-mongo')
+const MongoStore = require('connect-mongo')
 
 const { db } = require('./constants')
 
 module.exports = (app) => {
     app.use(
       session({
-        secret: process.env.SESSION_SECRET || "change me",
+        secret: process.env.SESSION_SECRET,
         resave: true,
         saveUninitialized: false,
         cookie: {

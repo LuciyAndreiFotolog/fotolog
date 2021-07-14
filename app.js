@@ -11,6 +11,7 @@ require('./config/db.config');
 require("./config/passport.config");
 
 const app = express();
+require('./config/session.config')(app)
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static("public"));
@@ -20,6 +21,14 @@ app.use(passport.session());
 app.set('views', __dirname + '/views');
 app.set('view engine', 'hbs');
 hbs.registerPartials(__dirname + '/views/partials');
+
+app.use((req, res, next) => {
+  
+  console.log(req.user)
+  res.locals.currentUser = req.user;
+
+  next()
+})
 
 // Routes
 const routes = require('./routes/routes');

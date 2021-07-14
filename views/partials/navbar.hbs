@@ -15,15 +15,23 @@
           <div class="uk-navbar-center-right">
             <div>
               <ul class="uk-navbar-nav">
-                <li><a href='/users/register'>Register</a></li>
-                <li><a href='/users/login'>Login</a></li>
-                {{!-- <div class="uk-navbar-dropdown">
-                  <ul class="uk-nav uk-navbar-dropdown-nav">
-                    <li class="uk-active"><a href="#">Luci</a></li>
-                    <li><a href="#">Ana</a></li>
-                    <li><a href="#">Ramon</a></li>
-                  </ul>
-                </div> --}}
+                {{#if currentUser}}
+                  <li><a href=""><img data-src="/images/rupaul.jpg" width="25" height="25" alt="" uk-img></a></li>
+                  <div class="uk-navbar-dropdown">
+                    <ul class="uk-nav uk-navbar-dropdown-nav">
+                      <li class="uk-active"><a href="#">Luci</a></li>
+                      <li><a href="#">Ana</a></li>
+                      <li>
+                        <form action="/logout" method="POST">
+                          <button class="k-nav uk-navbar-dropdown-nav uk-button uk-button-text">Logout</button>
+                        </form> 
+                      </li>
+                    </ul>
+                  </div>
+                {{else}}
+                  <li><a href='/users/register'>Register</a></li>
+                  <li><a href='/users/login'>Login</a></li>
+                {{/if}}
               </ul>
             </div>
           </div>
