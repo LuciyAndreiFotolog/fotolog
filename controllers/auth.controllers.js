@@ -106,6 +106,6 @@ res.status(400).render('auth/login', { user: req.body, errorMessage: validations
 };
 
 module.exports.logout = (req, res, next) => {
-  req.logout()
-  req.redirect('/')
+  req.logout();
+  res.redirect('/');
 }
