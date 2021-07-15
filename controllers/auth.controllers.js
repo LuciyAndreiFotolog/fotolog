@@ -61,8 +61,7 @@ module.exports.doLogin = (req, res, next) => {
         if (loginErr) {
           next(loginErr)
         } else {
-          console.log('hello')
-          res.redirect('/')
+          res.redirect('/users/:id')
         }
       })
     }

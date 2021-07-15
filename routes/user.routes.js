@@ -1,6 +1,9 @@
 const router = require('express').Router();
 const passport = require('passport');
-const authController = require('../controllers/auth.controllers')
+const authController = require('../controllers/auth.controllers');
+const usersController = require('../controllers/user.controllers');
+const multer = require('multer');
+const upload = multer({ dest: './public/uploads/' })
 
 const GOOGLE_SCOPES = [
   'https://www.googleapis.com/auth/userinfo.email',
@@ -24,5 +27,10 @@ router.get('/auth/facebook/callback', authController.facebookLogin)
 // Logout
 router.post('/logout', authController.logout)
 
+// Profile
+
+router.get('/:id/edit-profile', upload.single('image'), usersController.editProfile);
+router.post('/:id/edit-profile', usersController.doEditProfile)
+router.get('/:id', usersController.profile)
 
 module.exports = router;

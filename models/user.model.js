@@ -32,6 +32,9 @@ const userSchema = new mongoose.Schema(
   },
   facebookID: {
     type: String
+  }, 
+  description: {
+    type: String, 
   }
   // active: {
   //   type: Boolean, 
