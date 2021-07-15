@@ -14,9 +14,19 @@ module.exports.editProfile = (req, res, next) => {
 
 module.exports.doEditProfile = (req, res, next) => {
   const { id } = req.params;
-  User.findByIdAndUpdate(id, req.body, {new: true})
+
+  User.findByIdAndUpdate(id, req.file, {new: true})
     .then(() => {
+      if (req.file) {
+        req.body.image = `/uploads/${req.file.filename}`;
+      }
+    })
+
+
+  User.findByIdAndUpdate(id, req.body, {new: true})
+    .then((user) => {
       res.redirect(`/users/${id}`)
     })
     .catch(next)
 }
+

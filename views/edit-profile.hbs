@@ -1,13 +1,13 @@
 
 
-<form action="/users/{{currentUser.id}}/edit-profile" method="POST" class="form">
+<form action="/users/{{currentUser.id}}/edit-profile" method="POST" class="form" enctype="multipart/form-data">
 
-  {{!-- <div class="js-upload" uk-form-custom>
+  <div class="js-upload" uk-form-custom>
     <label for="image"></label>
     <img src="{{currentUser.image}}" width="50" height="50" class="uk-border-circle" alt="">
-    <input name='image' id='image' type="file" multiple>
+    <input name='image' id='image' type="file">
     <a class="" type="button" tabindex="-1">Select a profile picture</a>
-  </div> --}}
+  </div>
 
     <div class="uk-margin">
     <div class="uk-inline">
