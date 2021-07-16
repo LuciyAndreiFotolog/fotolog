@@ -1,12 +1,18 @@
 <h1>Register</h1>
-
-<form action="/users/register" method="POST" class="form">
+<div>
+  <form action="/users/register" method="POST" class="form">
 
   <div class="uk-margin">
     <div class="uk-inline">
       <label for="email"></label>
       <span class="uk-form-icon uk-form-icon-flip" uk-icon="icon: mail"></span>
-      <input name='email' class="uk-input uk-form-width-large" type="email" id='email' placeholder="Email" required>
+      <input name='email' class="uk-input uk-form-width-large {{#if errors.email}}is-invalid{{/if}}" type="email" id='email' placeholder="Email" required>
+      {{#if errors.email}}
+        <div class="uk-alert-danger" uk-alert>
+            <a class="uk-alert-close" uk-close></a>
+          {{errors.email}}
+        </div>
+      {{/if}}
     </div>
   </div>
 
@@ -22,33 +28,20 @@
     <div class="uk-inline">
       <label for="password"></label>
       <span class="uk-form-icon uk-form-icon-flip" uk-icon="icon: lock"></span>
-      <input name='password' class="uk-input uk-form-width-large" type="password" id='password' placeholder="Password" required>
-    </div>
-  </div>
-
-  <button class="uk-button uk-button-secondary uk-form-width-large">Register</button>
-
-</form>
-
-
-{{!-- <form action="/register" method="POST">
-  <div class="mb-3">
-    <label for="email" class="form-label">Email address</label>
-    <input name="email" value="{{user.email}}" type="email" class="form-control {{#if errors.email}}is-invalid{{/if}}" id="email" required>
-    {{#if errors.email}}
-      <div class="invalid-feedback">
-        {{errors.email}}
-      </div>
-    {{/if}}
-  </div>
-  <div class="mb-3">
-    <label for="password" class="form-label">Password</label>
-    <input name="password" type="password" class="form-control {{#if errors.password}}is-invalid{{/if}}" id="password" required>
-    {{#if errors.password}}
+      <input name='password' class="uk-input uk-form-width-large {{#if errors.password}}is-invalid{{/if}}" type="password" id='password' placeholder="Password" required>
+      {{#if errors.password}}
       <div class="invalid-feedback">
         {{errors.password}}
       </div>
-    {{/if}}
+      {{/if}}
+    </div>
   </div>
-  <button type="submit" class="btn btn-primary">Submit</button>
-</form> --}}
+
+  <button class="uk-button uk-button-secondary uk-margin-small uk-form-width-large">Register</button>
+  
+  <a href="/users/authenticate/google" uk-icon="icon: google" class="uk-button uk-margin-small uk-button-default uk-form-width-large">Register with Google   </a>
+  <a href="/users/auth/facebook" uk-icon="icon: facebook" class="uk-button uk-margin-small uk-button-primary uk-form-width-large">Register with Facebook   </a>
+
+
+</form>
+</div>

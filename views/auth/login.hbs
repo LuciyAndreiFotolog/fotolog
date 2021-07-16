@@ -6,7 +6,13 @@
     <div class="uk-inline">
       <label for="email"></label>
       <span class="uk-form-icon uk-form-icon-flip" uk-icon="icon: mail"></span>
-      <input name='email' value="{{user.email}}" class="uk-input uk-form-width-large" type="email" id='email' placeholder="Email" required>
+      <input name='email' value="{{user.email}}" class="uk-input uk-form-width-large {{#if errorMessage}}is-invalid{{/if}}" type="email" id='email' placeholder="Email" required>
+      {{#if errorMessage}}
+        <div class="uk-alert-danger" uk-alert>
+          <a class="uk-alert-close" uk-close></a>
+          {{errorMessage}}
+        </div>
+      {{/if}}
     </div>
   </div>
 
@@ -14,10 +20,11 @@
     <div class="uk-inline">
       <label for="password"></label>
       <span class="uk-form-icon uk-form-icon-flip" uk-icon="icon: lock"></span>
-      <input name='password' class="uk-input uk-form-width-large" type="password" id='password' placeholder="Password" required>
+      <input name='password' class="uk-input uk-form-width-large {{#if errorMessage}}is-invalid{{/if}}" type="password" id='password' placeholder="Password" required>
     </div>
   </div>
 
-  <button class="uk-button uk-button-secondary uk-form-width-large">Login</button>
-
+  <button class="uk-button uk-margin-small uk-button-secondary uk-form-width-large">Login</button>
+  <a href="/users/authenticate/google" uk-icon="icon: google" class="uk-button uk-margin-small uk-button-default uk-form-width-large">Login with Google   </a>
+  <a href="/users/auth/facebook" uk-icon="icon: facebook" class="uk-button uk-margin-small uk-button-primary uk-form-width-large">Login with Facebook   </a>
 </form>

@@ -17,7 +17,7 @@ const userSchema = new mongoose.Schema(
   username: {
     type: String,
     unique: true,
-    required: true
+    required: false
   },
   password : {
     type: String, 
@@ -25,11 +25,17 @@ const userSchema = new mongoose.Schema(
     minLength: [8, 'Password must be at least 8 characters long']
   },
   image: {
-    type: String }
-  // }, 
-  // googleID: {
-  //   type: String
-  // },
+    type: String 
+  }, 
+  googleID: {
+    type: String
+  },
+  facebookID: {
+    type: String
+  }, 
+  description: {
+    type: String, 
+  }
   // active: {
   //   type: Boolean, 
   //   default: false
