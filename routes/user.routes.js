@@ -2,8 +2,7 @@ const router = require('express').Router();
 const passport = require('passport');
 const authController = require('../controllers/auth.controllers');
 const usersController = require('../controllers/user.controllers');
-const multer = require('multer');
-const upload = multer({ dest: './public/uploads/' })
+const upload = require('../config/storage.config')
 
 const GOOGLE_SCOPES = [
   'https://www.googleapis.com/auth/userinfo.email',
@@ -29,8 +28,8 @@ router.post('/logout', authController.logout)
 
 // Profile
 
-router.get('/:id/edit-profile', upload.single('image'), usersController.editProfile);
-router.post('/:id/edit-profile', usersController.doEditProfile)
+router.get('/:id/edit-profile', usersController.editProfile);
+router.post('/:id/edit-profile', upload.single('image'), usersController.doEditProfile)
 router.get('/:id', usersController.profile)
 
 module.exports = router;

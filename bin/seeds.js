@@ -18,7 +18,8 @@ mongoose.connection.once('connected', () => {
           const user = {
             email: faker.internet.email(),
             username: faker.name.firstName(),
-            password: 'fakepassword'
+            password: 'fakepassword',
+            avatar: faker.image.avatar()
           }
 
           usersToCreate.push(user);

@@ -1,6 +1,8 @@
 const router = require('express').Router();
-const multer = require('multer');
-const upload = multer({ dest: './public/uploads/'});
+const upload = require('../config/storage.config');
+const logControllers = require('../controllers/log.controllers')
+
+router.get('/:id', logControllers.viewLog)
 
 
 

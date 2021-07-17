@@ -1,7 +1,11 @@
 const User = require('../models/user.model');
+const Log = require('../models/log.model')
 
 module.exports.profile = (req, res, next) => {
-  res.render('profile')
+  Log.find({owner: req.user._id})
+    .then((logs) => {
+      res.render('profile', {logs: logs})
+    })
 };
 
 module.exports.editProfile = (req, res, next) => {
@@ -14,14 +18,9 @@ module.exports.editProfile = (req, res, next) => {
 
 module.exports.doEditProfile = (req, res, next) => {
   const { id } = req.params;
-
-  User.findByIdAndUpdate(id, req.file, {new: true})
-    .then(() => {
-      if (req.file) {
-        req.body.image = `/uploads/${req.file.filename}`;
-      }
-    })
-
+  if(req.file) {
+    req.body.image = req.file.path;
+  }
 
   User.findByIdAndUpdate(id, req.body, {new: true})
     .then((user) => {

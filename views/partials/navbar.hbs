@@ -16,10 +16,11 @@
             <div>
               <ul class="uk-navbar-nav">
                 {{#if currentUser}}
-                  <li><a href=""><img data-src="{{currentUser.image}}" class="uk-border-circle" width="30" height="30" alt="" uk-img></a></li>
+                  <li class=""><a href="/">New Log</a></li>
+                  <li><a href=""><img data-src="{{currentUser.avatar}}" class="uk-border-circle" width="30" height="30" alt="" uk-img></a></li>
                   <div class="uk-navbar-dropdown">
                     <ul class="uk-nav uk-navbar-dropdown-nav">
-                      <li class="uk-active"><a href="#">Luci</a></li>
+                      <li class="uk-active"><a href="/users/{{currentUser.id}}/edit-profile">Edit Profile</a></li>
                       <li><a href="#">Ana</a></li>
                       <li>
                         <form action="/users/logout" method="POST">
