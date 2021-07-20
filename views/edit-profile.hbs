@@ -1,11 +1,11 @@
 
 
-<form action="/users/{{currentUser.id}}/edit-profile" method="POST" class="form" enctype="multipart/form-data">
+<form action="/users/auth/{{currentUser.id}}/edit-profile" method="POST" class="form" enctype="multipart/form-data">
 
   <div class="js-upload" uk-form-custom>
     <label for="image"></label>
-    <img src="{{currentUser.avatar}}" width="50" height="50" class="uk-border-circle" alt="">
-    <input name='image' id='image' type="file">
+    <img src="{{currentUser.avatar}}" width="100" height="100" class="uk-border-circle uk-margin-medium-right" alt="">
+    <input name='image' class=' uk-margin-small-left' id='image' type="file">
     <a class="" type="button" tabindex="-1">Select a profile picture</a>
   </div>
 

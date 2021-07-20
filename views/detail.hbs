@@ -2,3 +2,10 @@
   <img src="{{log.image}}" alt="">
 </div>
 
+<a href="/logs/{{log.id}}/edit" class="btn btn-primary mb-3">Edit Log</a>
+
+<form action="/logs/{{log._id}}/delete" method="POST">
+  <button class="uk-button uk-button-default uk-button-link">
+    Delete Post
+  </button>
+</form>

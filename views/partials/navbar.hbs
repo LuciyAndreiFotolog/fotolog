@@ -5,9 +5,11 @@
           <div class="uk-navbar-center-left"><div>
             <ul class="uk-navbar-nav">
               <li class=""><a href="/">Home</a></li>
+              {{#if currentUser}}
               <li>
-                <a href="#">Andrei</a>
+                <a href="/users/auth/{{currentUser.id}}">{{currentUser.username}}</a>
               </li>
+              {{/if}}
             </ul>
           </div>
           </div>
@@ -16,11 +18,11 @@
             <div>
               <ul class="uk-navbar-nav">
                 {{#if currentUser}}
-                  <li class=""><a href="/logs/newlog">New Log</a></li>
+                  <li class=""><a href="/logs/new-log">New Log</a></li>
                   <li><a href=""><img data-src="{{currentUser.avatar}}" class="uk-border-circle" width="30" height="30" alt="" uk-img></a></li>
                   <div class="uk-navbar-dropdown">
                     <ul class="uk-nav uk-navbar-dropdown-nav">
-                      <li class="uk-active"><a href="/users/{{currentUser.id}}/edit-profile">Edit Profile</a></li>
+                      <li class="uk-active"><a href="/users/auth/{{currentUser.id}}/edit-profile">Edit Profile</a></li>
                       <li><a href="#">Ana</a></li>
                       <li>
                         <form action="/users/logout" method="POST">
