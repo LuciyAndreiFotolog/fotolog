@@ -27,6 +27,12 @@ const logSchema = new mongoose.Schema(
   }
 );
 
+logSchema.virtual('comments', {
+  ref: 'Comment',
+  localField: '_id',
+  foreignField: 'logId',
+});
+
 const Log = mongoose.model('Log', logSchema);
 
 module.exports = Log;

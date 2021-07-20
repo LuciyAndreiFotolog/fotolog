@@ -3,9 +3,12 @@ const Log = require("../models/log.model");
 
 module.exports.viewLog = (req, res, next) => {
   const { id } = req.params;
-  Log.findById(id).then((log) => {
-    res.render("detail", { log: log });
-  });
+  Log.findById(id)
+    .populate('comments')
+    .then((log) => {
+      res.render("detail", { log: log });
+    })
+    .catch(next)
 };
 
 module.exports.create = (req, res, next) => {

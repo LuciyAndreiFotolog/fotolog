@@ -19,12 +19,12 @@ module.exports.editProfile = (req, res, next) => {
 module.exports.doEditProfile = (req, res, next) => {
   const { id } = req.params;
   if(req.file) {
-    req.body.image = req.file.path;
+    req.body.avatar = req.file.path;
   }
-
+  
   User.findByIdAndUpdate(id, req.body, {new: true})
     .then((user) => {
-      res.redirect(`/users/${id}`)
+      res.redirect(`/users/auth/${id}`)
     })
     .catch(next)
 }

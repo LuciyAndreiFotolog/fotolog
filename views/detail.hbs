@@ -1,6 +1,38 @@
-<div>
-  <img src="{{log.image}}" alt="">
+<div class="uk-child-width-1-2 uk-grid-match uk-text-center uk-flex uk-flex-center"  uk-grid>
+  <div>
+    <div class="uk-card" id="/logs/{{log.id}}" >
+        <div class="uk-card-media-top">
+            <img src="{{log.image}}" class="" alt="">
+        </div>
+        <div class="uk-card-body">
+            <h3 class="">{{log.title}}</h3>
+            <p>{{log.description}}</p>
+        </div>
+        <div>
+          <h3 class="uk-flex uk-flex-left">Comments</h3>
+
+          {{#each log.comments as |comment|}}
+            <h6>{{comment.userId}} commented:</h6>
+            <p>{{comment.body}}</p>
+          {{/each}}
+
+          <form action='/logs/{{log.id}}/comments' method="POST" class="form uk-child-width-1-1 uk-grid-match">
+            <div class="uk-margin">
+              <div class=" uk-child-width-1-1">
+                <label for="body"></label>
+                <textarea name='body' class="uk-input uk-form-width-large" id='body' placeholder="Write a comment"></textarea>
+              </div>
+              <button type="submit" class="uk-button uk-margin-small uk-button-secondary uk-form-width-large">Comment</button>
+            </div>
+          </form>
+        </div>
+    </div>
+  </div>
 </div>
+
+
+
+
 
 <a href="/logs/{{log.id}}/edit" class="btn btn-primary mb-3">Edit Log</a>
 
