@@ -1,6 +1,6 @@
 
 
-<form action="/users/auth/{{currentUser.id}}/edit-profile" method="POST" class="form" enctype="multipart/form-data">
+<form action="/users/{{currentUser.id}}/edit-profile" method="POST" class="form" enctype="multipart/form-data">
 
   <div class="js-upload" uk-form-custom>
     <label for="image"></label>
@@ -38,14 +38,6 @@
       <input name='username' value="{{currentUser.username}}" class="uk-input uk-form-width-large {{#if errorMessage}}is-invalid{{/if}}" type="text" id='username' placeholder="Username" required>
     </div>
   </div>
-
-  {{!-- <div class="uk-margin">
-    <div class="uk-inline">
-      <label for="password"></label>
-      <span class="uk-form-icon uk-form-icon-flip" uk-icon="icon: lock"></span>
-      <input name='password' class="uk-input uk-form-width-large {{#if errorMessage}}is-invalid{{/if}}" type="password" id='password' placeholder="Password" required>
-    </div>
-  </div> --}}
 
   <button type="submit" class="uk-button uk-margin-small uk-button-secondary uk-form-width-large">Update</button>
   

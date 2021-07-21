@@ -22,9 +22,9 @@ module.exports.doCreate = (req, res, next) => {
     req.body.image = req.file.path;
   }
 
-  // if (req.body.tags) {
-  //   req.body.tags = req.body.tags.split(",").map((tag) => tag.trim());
-  // }
+  if (req.body.tags) {
+    req.body.tags = req.body.tags.split(",").map((tag) => tag.trim());
+  }
 
   Log.create(req.body)
     .then(() => {

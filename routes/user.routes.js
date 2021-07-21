@@ -11,12 +11,12 @@ const GOOGLE_SCOPES = [
 ]
 
 // Register
-router.get('/register', authController.register);
-router.post('/register', authController.doRegister);
+router.get('/register', authMiddleware.isNotAuthenticated, authController.register);
+router.post('/register', authMiddleware.isNotAuthenticated, authController.doRegister);
 
 // Login
-router.get('/login', authController.login);
-router.post('/login', authController.doLogin);
+router.get('/login', authMiddleware.isNotAuthenticated, authController.login);
+router.post('/login', authMiddleware.isNotAuthenticated, authController.doLogin);
 
 router.get('/authenticate/google', passport.authenticate('google-auth', { scope: GOOGLE_SCOPES }));
 router.get('/authenticate/google/callback', authController.googleLogin);
@@ -29,8 +29,8 @@ router.post('/logout', authController.logout)
 
 // Profile
 
-router.get('/auth/:id/edit-profile', usersController.editProfile);
-router.post('/auth/:id/edit-profile',  upload.single('image'), usersController.doEditProfile)
-router.get('/auth/:id', usersController.profile)
+router.get('/:id/edit-profile', authMiddleware.isAuthenticated, usersController.editProfile);
+router.post('/:id/edit-profile', authMiddleware.isAuthenticated,  upload.single('image'), usersController.doEditProfile)
+router.get('/:id', usersController.profile)
 
 module.exports = router;

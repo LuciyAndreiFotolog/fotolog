@@ -8,13 +8,23 @@
             <h3 class="">{{log.title}}</h3>
             <p>{{log.description}}</p>
         </div>
+        <hr>
         <div>
           <h3 class="uk-flex uk-flex-left">Comments</h3>
-
-          {{#each log.comments as |comment|}}
-            <h6>{{comment.userId}} commented:</h6>
+          <div>
+            {{#each log.comments as |comment|}}
+            <h6>{{comment.username}} commented:</h6>
             <p>{{comment.body}}</p>
-          {{/each}}
+
+            <form action="/logs/comments/{{comment.id}}/delete" method="POST">
+              <button type ='submit' class="uk-button uk-button-default uk-button-link">
+                Delete
+              </button>
+            </form>
+
+            {{/each}}
+          </div>
+          
 
           <form action='/logs/{{log.id}}/comments' method="POST" class="form uk-child-width-1-1 uk-grid-match">
             <div class="uk-margin">

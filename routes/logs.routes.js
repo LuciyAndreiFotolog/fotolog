@@ -20,6 +20,6 @@ router.get("/:id", logControllers.viewLog);
 // Comments
 router.post('/:logid/comments', commentControllers.newComment);
 
-router.post('/comments/:id', commentControllers.deleteComment)
+router.post('/comments/:id/delete', commentControllers.deleteComment)
 
 module.exports = router;

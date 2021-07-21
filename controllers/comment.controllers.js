@@ -5,8 +5,9 @@ const Log = require("../models/log.model");
 module.exports.newComment = (req, res, next) => {
   const { logid: logId } = req.params;
   const userId = req.user._id;
-  const log = { ...req.body, logId, userId }
-  console.log(req.session)
+  const username = req.user.username;
+  const log = { ...req.body, logId, userId, username };
+  
   Comment.create(log)
     .then(() => {
       res.redirect(`/logs/${logId}`)
@@ -15,5 +16,9 @@ module.exports.newComment = (req, res, next) => {
 };
 
 module.exports.deleteComment = (req, res, next) => {
-
+  Comment.findByIdAndDelete(req.params.id)
+    .then((c) => {
+      res.redirect(`/logs/${c.logId}`)
+    })
+    .catch(next)
 };

@@ -32,24 +32,6 @@ module.exports.login = (req, res, next) => {
   res.render('auth/login')
 };
 
-// module.exports.doLogin = (req, res, next) => {
-//   passport.authenticate('local-auth', (error, user, validations) => {
-//     if (error) {
-//       next(error)
-//     } else if (!user) {
-//       res.render('auth/login', { user: req.body, errorMessage: validations.error })
-//     } else {
-//       req.login(user, (loginErr) => {
-//         if (loginErr) {
-//           next(loginErr)
-//         } else {
-//           res.redirect('/')
-//         }
-//       })
-//     }
-//   }) (req, res, next)
-// }
-
 module.exports.doLogin = (req, res, next) => {
   passport.authenticate('local-auth', (error, user, validations) => {
     if (error) {
@@ -61,7 +43,7 @@ module.exports.doLogin = (req, res, next) => {
         if (loginErr) {
           next(loginErr)
         } else {
-          res.redirect(`/users/auth/${user.id}`)
+          res.redirect('/users/me')
         }
       })
     }

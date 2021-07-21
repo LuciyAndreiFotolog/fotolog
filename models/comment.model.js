@@ -19,7 +19,7 @@ const commentSchema = new mongoose.Schema(
     username: {
       type: mongoose.SchemaTypes.String,
       ref: 'User'
-    }
+    } 
   },
   {
     timestamps: true

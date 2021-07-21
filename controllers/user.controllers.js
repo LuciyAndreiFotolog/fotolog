@@ -2,9 +2,22 @@ const User = require('../models/user.model');
 const Log = require('../models/log.model')
 
 module.exports.profile = (req, res, next) => {
-  Log.find({owner: req.user._id})
-    .then((logs) => {
-      res.render('profile', {logs: logs})
+  let id;
+  if (req.params.id === "me") {
+     if (!req.user) { 
+       res.redirect("/users/login");
+       return;
+     } else {
+       id = req.user._id;
+     }
+  } else {
+     id = req.params.id;
+  }
+
+  User.findById(id)
+    .populate({path: 'logs', options: { sort: { 'createdAt': -1 } } })
+    .then((user) => {
+      res.render('profile', {user: user, isCurrentUser: user._id.toString() === req.user._id.toString()})
     })
 };
 
@@ -24,7 +37,7 @@ module.exports.doEditProfile = (req, res, next) => {
   
   User.findByIdAndUpdate(id, req.body, {new: true})
     .then((user) => {
-      res.redirect(`/users/auth/${id}`)
+      res.redirect(`/users/${id}`)
     })
     .catch(next)
 }

@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
+const Log = require('./log.model.js')
 
 const EMAIL_PATTERN = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
 const SALT_ROUNDS = 10;
@@ -77,6 +78,12 @@ userSchema.pre('save', function(next) {
     next()
   }
 });
+
+userSchema.virtual('logs', { 
+  ref: 'Log',
+  localField: '_id',
+  foreignField: 'owner',
+ })
 
 userSchema.methods.checkPassword = function(passwordToCheck) {
   return bcrypt.compare(passwordToCheck, this.password)
