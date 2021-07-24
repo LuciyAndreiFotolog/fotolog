@@ -89,4 +89,12 @@ res.status(400).render('auth/login', { user: req.body, errorMessage: validations
 module.exports.logout = (req, res, next) => {
   req.logout();
   res.redirect('/');
-}
+};
+
+module.exports.changePassword = (req, res, next) => {
+  res.render('auth/configuration')
+};
+
+module.exports.doChangePassword = (req, res, next) => {
+
+};

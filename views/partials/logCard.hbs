@@ -1,6 +1,6 @@
 
     <div>
-        <a href="/logs/{{this._id}}" class="uk-text-decoration-none">
+        <a href="/logs/{{this._id}}" class="uk-text-decoration-none" uk-toggle="target: #modal-log">
           <div class="uk-card uk-card-hover" id="/logs/{{this._id}}" >
               <div class="uk-card-media-top">
                   <img src="{{this.image}}" class="" alt="">
@@ -11,32 +11,9 @@
           </div>
         </a>
     </div>
-    
 
 
 
+   
 
-
-
-{{!-- 
-<div class="col">
-  <a href="/projects/{{this._id}}" style="text-decoration: none">
-    <div class="card h-100">
-      <img src="{{this.images.[0]}}" class="card-img-top">
-      <div class="card-body h-100">
-        <div>
-          <h5 class="card-title">{{this.title}}</h5>
-          <p>{{date this.createdAt "MMMM Do YYYY"}}</p>
-
-        </div>
-
-        <div>
-          <img class="rounded-circle shadow" src="{{this.owner.image}}" width="20" />
-          <a class="btn btn-link" href="/users/{{this.owner._id}}">
-            {{this.owner.fullName}}
-          </a>
-        </div>
-      </div>
-    </div>
-  </a>
-</div> --}}
+ {{!-- /logs/{{this._id}} --}}

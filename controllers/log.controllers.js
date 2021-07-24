@@ -6,7 +6,8 @@ module.exports.viewLog = (req, res, next) => {
   Log.findById(id)
     .populate('comments')
     .then((log) => {
-      res.render("detail", { log: log });
+      console.log(req.user)
+      res.render("detail", { log: log, isCurrentUser: log.owner.toString() === req.user._id.toString()});
     })
     .catch(next)
 };

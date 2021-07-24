@@ -1,0 +1,22 @@
+<h1>Change your password</h1>
+
+<form action="/users/{{currentUser.id}}/configuration" method="POST" class="form">
+
+  <div class="uk-margin">
+    <div class="uk-inline">
+      <label for="password"></label>
+      <span class="uk-form-icon uk-form-icon-flip" uk-icon="icon: lock"></span>
+      <input name='password' class="uk-input uk-form-width-large {{#if errorMessage}}is-invalid{{/if}}" type="password" id='password' placeholder="Password" required>
+    </div>
+  </div>
+
+  <div class="uk-margin">
+    <div class="uk-inline">
+      <label for="password"></label>
+      <span class="uk-form-icon uk-form-icon-flip" uk-icon="icon: lock"></span>
+      <input name='password' class="uk-input uk-form-width-large {{#if errorMessage}}is-invalid{{/if}}" type="password" id='password' placeholder="Password" required>
+    </div>
+  </div>
+
+  <button class="uk-button uk-margin-small uk-button-secondary uk-form-width-large">Change password</button>
+</form>
