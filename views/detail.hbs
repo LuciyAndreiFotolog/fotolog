@@ -1,0 +1,58 @@
+<div class="uk-child-width-1-2 uk-grid-match uk-text-center uk-flex uk-flex-center"  uk-grid>
+  <div>
+    <div class="uk-card" id="/logs/{{log.id}}" >
+        <div class="uk-card-media-top">
+            <img src="{{log.image}}" class="" alt="">
+        </div>
+        <div class="uk-card-body">
+            <h3 class="">{{log.title}}</h3>
+            <p>{{log.description}}</p>
+        </div>
+
+        {{#if isCurrentUser}}
+          <div class="uk-flex uk-flex-around">
+            <div class=''>
+              <a href="/logs/{{log.id}}/edit" class="uk-button uk-button-text uk-button-link">Edit Log</a>
+            </div>
+            <div>
+              <form action="/logs/{{log._id}}/delete" method="POST">
+                <button class="uk-button uk-button-link uk-button-text">
+                  Delete Log
+                </button>
+              </form>
+            </div>
+          </div>
+        {{/if}}
+
+        <hr>
+        <div>
+          <h3 class="uk-flex uk-flex-left">Comments</h3>
+          <div class=''>
+            {{#each log.comments as |comment|}}
+              <h6 class='uk-flex uk-flex-left'>{{comment.username}} commented:</h6>
+              <div class='uk-flex uk-flex-between'>
+                <p class='uk-margin-medium-left'>"{{comment.body}}"</p>
+                {{#if ../isCurrentUser}}
+                  <form action="/logs/comments/{{comment.id}}/delete" method="POST">
+                    <button type ='button submit' class="" uk-close>
+                    </button>
+                  </form>
+                {{/if}}
+              </div>
+            {{/each}}
+          </div>
+          
+
+          <form action='/logs/{{log.id}}/comments' method="POST" class="form uk-child-width-1-1 uk-grid-match">
+            <div class="uk-margin">
+              <div class=" uk-child-width-1-1">
+                <label for="body"></label>
+                <textarea name='body' class="uk-input uk-form-width-large" id='body' placeholder="Write a comment"></textarea>
+              </div>
+              <button type="submit" class="uk-button uk-margin-small uk-button-secondary uk-form-width-large">Comment</button>
+            </div>
+          </form>
+        </div>
+    </div>
+  </div>
+</div>

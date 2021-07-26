@@ -1,19 +1,19 @@
 
 
-<form action="/users/{{currentUser.id}}/edit-profile" method="POST" class="form">
+<form action="/users/{{currentUser.id}}/edit-profile" method="POST" class="form" enctype="multipart/form-data">
 
-  {{!-- <div class="js-upload" uk-form-custom>
+  <div class="js-upload" uk-form-custom>
     <label for="image"></label>
-    <img src="{{currentUser.image}}" width="50" height="50" class="uk-border-circle" alt="">
-    <input name='image' id='image' type="file" multiple>
+    <img src="{{currentUser.avatar}}" width="100" height="100" id='image-preview' class="uk-border-circle uk-margin-medium-right" alt="">
+    <input name='image' class=' uk-margin-small-left' id='image' type="file">
     <a class="" type="button" tabindex="-1">Select a profile picture</a>
-  </div> --}}
+  </div>
 
-    <div class="uk-margin">
+  <div class="uk-margin">
     <div class="uk-inline">
       <label for="description"></label>
       <span class="uk-form-icon uk-form-icon-flip" uk-icon="icon: pencil"></span>
-      <textarea name='description' class="uk-input uk-form-width-large" id='description' placeholder="Tell the world about you">{{currentUser.description}}</textarea>
+      <textarea name='description' class="uk-input uk-form-width-large uk-textarea" rows="5" id='description' placeholder="Tell the world about you">{{currentUser.description}}</textarea>
     </div>
   </div>
 
@@ -39,14 +39,19 @@
     </div>
   </div>
 
-  {{!-- <div class="uk-margin">
-    <div class="uk-inline">
-      <label for="password"></label>
-      <span class="uk-form-icon uk-form-icon-flip" uk-icon="icon: lock"></span>
-      <input name='password' class="uk-input uk-form-width-large {{#if errorMessage}}is-invalid{{/if}}" type="password" id='password' placeholder="Password" required>
-    </div>
-  </div> --}}
-
   <button type="submit" class="uk-button uk-margin-small uk-button-secondary uk-form-width-large">Update</button>
   
 </form>
+
+<script>
+  const imgInp = document.getElementById('image')
+  const imgPreview = document.getElementById('image-preview')
+
+  imgInp.onchange = evt => {
+  const [file] = imgInp.files
+  if (file) {
+    {{!-- imgPreview.classList.remove('hidden') --}}
+    imgPreview.src = URL.createObjectURL(file)
+  }
+}
+</script>

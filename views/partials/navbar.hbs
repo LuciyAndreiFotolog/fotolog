@@ -1,41 +1,54 @@
 <div class="uk-position-relative">
   <nav class="uk-navbar-container-large uk-navbar-transparent uk-margin" uk-navbar>
-      <div class="uk-navbar-center">
-
-          <div class="uk-navbar-center-left"><div>
-            <ul class="uk-navbar-nav">
-              <li class=""><a href="/">Home</a></li>
-              <li>
-                <a href="#">Andrei</a>
-              </li>
-            </ul>
-          </div>
-          </div>
-          <a class="uk-navbar-item uk-logo" href="/">FOTOLOG</a>
-          <div class="uk-navbar-center-right">
-            <div>
-              <ul class="uk-navbar-nav">
-                {{#if currentUser}}
-                  <li><a href=""><img data-src="{{currentUser.image}}" class="uk-border-circle" width="30" height="30" alt="" uk-img></a></li>
-                  <div class="uk-navbar-dropdown">
-                    <ul class="uk-nav uk-navbar-dropdown-nav">
-                      <li class="uk-active"><a href="#">Luci</a></li>
-                      <li><a href="#">Ana</a></li>
-                      <li>
-                        <form action="/users/logout" method="POST">
-                          <button class="k-nav uk-navbar-dropdown-nav uk-button uk-button-text">Logout</button>
-                        </form> 
-                      </li>
-                    </ul>
-                  </div>
-                {{else}}
-                  <li><a href='/users/register'>Register</a></li>
-                  <li><a href='/users/login'>Login</a></li>
-                {{/if}}
+    <div class="uk-navbar-center">
+      <div class="uk-navbar-center-left"><div>
+        <ul class="uk-navbar-nav">
+          <li class=""><a href="/">Home</a></li>
+          {{#if currentUser}}
+          <li>
+            <a href="/users/me">{{currentUser.username}}</a>
+          </li>
+          {{/if}}
+        </ul>
+      </div>
+    </div>
+    <a class="uk-navbar-item uk-logo" href="/">
+    <img src="/images/logo.png" width="25" height="25" alt="">
+    FOTOLOG
+    </a>
+    <div class="uk-navbar-center-right">
+      <div>
+        <ul class="uk-navbar-nav">
+          {{#if currentUser}}
+            <li class=""><a href="/logs/new-log">New Log</a></li>
+            <li><a href=""><img data-src="{{currentUser.avatar}}" class="uk-border-circle" width="30" height="30" alt="" uk-img></a></li>
+            <div class="uk-navbar-dropdown">
+              <ul class="uk-nav uk-navbar-dropdown-nav">
+                <li class="uk-active"><a href="/users/{{currentUser.id}}/edit-profile">Edit Profile</a></li>
+                <li><a href="/users/{{currentUser.id}}/configuration">Configuration</a></li>
+                <li>
+                  <form action="/users/logout" method="POST">
+                    <button class="k-nav uk-navbar-dropdown-nav uk-button uk-button-text">Logout</button>
+                  </form> 
+                </li>
               </ul>
             </div>
-          </div>
-
+          {{else}}
+            <li><a href='/users/register'>Sign up</a></li>
+            <li><a href='/users/login'>Login</a></li>
+          {{/if}}
+            <li>
+              <div>
+                <a class="uk-navbar-toggle" uk-search-icon href="#"></a>
+                <div class="uk-drop" uk-drop="mode: click; pos: right-center; offset: 0">
+                    <form action='/search' class="uk-search uk-search-navbar uk-width-1-1">
+                        <input class="uk-search-input" name='search' type="search" placeholder="Search" autofocus>
+                    </form>
+                </div>
+              </div>
+            </li>
+        </ul>
       </div>
+    </div>
   </nav>
 </div>

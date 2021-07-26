@@ -1,3 +1,22 @@
-<h1 class="uk-margin-large-top">FOTOLOG</h1>
+<h2 class='uk-margin-xlarge-bottom' style='text-align:center'>This is what happened since the last time you where here</h2>
 
-<a href="/users/{{currentUser.id}}">View profile</a>
+{{#each logs as |log|}}
+    {{>modalCard}}
+  {{/each}}
+
+<div class="uk-child-width-1-1@m uk-grid-match uk-text-center" uk-scrollspy="target: > div; cls: uk-animation-fade; delay: 500"  uk-grid>
+  {{#each logs as |log|}}
+    <div>
+      <a href="#" class="uk-text-decoration-none" uk-toggle=" target: #modal-log-{{log._id}}">
+        <div class="uk-card" id="/logs/{{log._id}}" >
+            <div class="uk-card-media-top">
+                <img src="{{log.image}}" class="" alt="">
+            </div>
+            <div class="uk-card-body">
+                <h5 class="">{{log.title}}</h5>
+            </div>
+        </div>
+      </a>
+    </div>
+  {{/each}}  
+</div>

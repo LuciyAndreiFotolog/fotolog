@@ -1,0 +1,55 @@
+<h1>New Log</h1>
+
+<form action="/logs/new-log" method="POST" class="form" enctype="multipart/form-data">
+
+  <div class="uk-margin">
+    <div class="uk-inline">
+      <label for="title"></label>
+      <span class="uk-form-icon uk-form-icon-flip" uk-icon="icon: quote-right"></span>
+      <input name='title' class="uk-input uk-form-width-large" type="text" id='title' placeholder="Write a caption" required>
+    </div>
+  </div>
+
+  <div class="js-upload" class='uk-flex uk-flex-column uk-flex-center uk-width-1-2' uk-form-custom>
+    <label for="image"></label>
+    <div>
+      <input name='image' id='image' type="file" required>
+      <img class='hidden' width='500' height='500' id="image-preview" src="#" alt="" />
+    </div>
+    <div>
+      <a class="uk-flex uk-flex-center uk-margin-small-top" type="button" tabindex="-1">Select a picture</a>
+    </div>
+  </div>
+
+  <div class="uk-margin">
+    <div class="uk-inline">
+      <label for="description"></label>
+      <span class="uk-form-icon uk-form-icon-flip" uk-icon="icon: pencil"></span>
+      <textarea name='description' class="uk-input uk-form-width-large " id='description' placeholder="Description"></textarea>
+    </div>
+  </div>
+
+   <div class="uk-margin">
+    <div class="uk-inline">
+      <label for="tags"></label>
+      <span class="uk-form-icon uk-form-icon-flip" uk-icon="icon: tag"></span>
+      <input name='tags' class="uk-input uk-form-width-large" type="text" id='tags' placeholder="Write your tags separated by commas">
+
+    </div>
+  </div>
+
+  <button type="submit" class="uk-button uk-margin-small uk-button-secondary uk-form-width-large">Create new log</button>
+</form>
+
+<script>
+  const imgInp = document.getElementById('image')
+  const imgPreview = document.getElementById('image-preview')
+
+  imgInp.onchange = evt => {
+  const [file] = imgInp.files
+  if (file) {
+    imgPreview.classList.remove('hidden')
+    imgPreview.src = URL.createObjectURL(file)
+  }
+}
+</script>
