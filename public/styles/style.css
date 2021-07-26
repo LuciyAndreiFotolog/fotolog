@@ -25,5 +25,27 @@ body {
   margin-bottom: 5rem;
 }
 
+.prehome-container {
+display: flex;
+justify-content: space-around;
+align-items: center;
+height: 75vh;
+}
 
+.prehome-image {
+  margin-right: 5rem;
+}
+
+
+.prehome-login {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.prehome-buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
   

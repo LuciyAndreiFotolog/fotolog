@@ -13,7 +13,7 @@ module.exports.profile = (req, res, next) => {
   } else {
      id = req.params.id;
   }
-
+  console.log(req.params)
   User.findById(id)
     .populate({path: 'logs', options: { sort: { 'createdAt': -1 } } })
     .then((user) => {
