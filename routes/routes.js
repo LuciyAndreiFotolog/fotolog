@@ -9,7 +9,7 @@ router.get('/', authMiddleware.isNotAuthenticated, (req, res, next) => {
   res.render('preHome')
 });
 
-router.get('/feed', authMiddleware.isAuthenticated, miscController.feed)
+router.get('/feed', authMiddleware.isAuthenticated, miscController.paginatedFeed)
 
 // Search 
 router.get('/search', miscController.search)

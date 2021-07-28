@@ -5,6 +5,7 @@ const express = require('express');
 const logger = require ('morgan');
 const hbs = require('hbs');
 const passport = require('passport');
+const paginate = require('express-paginate');
 
 // Connection to DB
 require('./config/db.config');
@@ -27,7 +28,9 @@ app.use((req, res, next) => {
   res.locals.currentUser = req.user;
 
   next()
-})
+});
+
+app.use(paginate.middleware(10, 20))
 
 // Routes
 const routes = require('./routes/routes');

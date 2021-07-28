@@ -4,7 +4,7 @@
     {{>modalCard}}
   {{/each}}
 
-<div class="uk-child-width-1-1@m uk-grid-match uk-text-center" uk-scrollspy="target: > div; cls: uk-animation-fade; delay: 500"  uk-grid>
+<div class="uk-child-width-1-2@m uk-grid-match uk-text-center" uk-scrollspy="target: > div; cls: uk-animation-fade; delay: 500"  uk-grid>
   {{#each logs as |log|}}
     <div>
       <a href="#" class="uk-text-decoration-none" uk-toggle=" target: #modal-log-{{log._id}}">
@@ -19,4 +19,20 @@
       </a>
     </div>
   {{/each}}  
+</div>
+
+<div>
+  <ul class="uk-pagination uk-flex-center" uk-margin>
+    {{#if previous}}
+      <li><a href="{{previous.url}}"><span uk-pagination-previous></span></a></li>
+    {{/if}}
+    
+    {{#each pages as |page|}}
+        <li><a href="{{page.url}}">{{page.number}}</a></li>
+    {{/each}}
+
+    {{#if next}}
+      <li><a href="{{next.url}}"><span uk-pagination-next></span></a></li>
+    {{/if}}
+</ul>
 </div>

@@ -49,11 +49,6 @@ const userSchema = new mongoose.Schema(
   //     Math.random().toString(36).substring(7) +
   //     Math.random().toString(36).substring(7)
   //   }
-  // },
-  // role: {
-  //   type: String, 
-  //   enum: ['ADMIN', 'USER'], 
-  //   default: 'USER'
   // }
 },
 {
@@ -61,12 +56,6 @@ const userSchema = new mongoose.Schema(
 });
 
 userSchema.pre('save', function(next) {
-  if (this.email === process.env.ADMIN_EMAIL) {
-    this.role = 'ADMIN'
-    this.active = true
-  } else {
-    this.role = 'USER'
-  }
 
   if (this.isModified('password')) {
     bcrypt.hash(this.password, SALT_ROUNDS)

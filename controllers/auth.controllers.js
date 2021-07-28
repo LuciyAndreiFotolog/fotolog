@@ -92,9 +92,52 @@ module.exports.logout = (req, res, next) => {
 };
 
 module.exports.changePassword = (req, res, next) => {
+  console.log(req.user)
   res.render('auth/configuration')
 };
 
 module.exports.doChangePassword = (req, res, next) => {
 
+  const { newPassword } = req.body;
+  // User.findOneAndUpdate({email: req.user.email }, { password: newPassword })
+  console.log(req.body)
+    User.findOne({email: req.user.email})
+    .then((user) => {
+
+      if (user) {
+        user.password = newPassword;
+        return user.save()
+        .then((response) => {
+          res.redirect('/users/me')
+        })
+      }
+
+      
+    })
+    .catch(next)
 };
+
+module.exports.contrasenia = (req, res, next) => {
+
+  const { newPassword } = req.body;
+
+  User.findOne({ $and: [{ "email": req.user.email }, { "currentPassword":req.body.currentPassword }, ], })
+  .then((user) => {
+
+    if (user) {
+      user.password = newPassword;
+      return user.save()
+      .then((response) => {
+        res.redirect('/users/me')
+      })
+    }
+
+    
+  })
+  .catch(next)
+}
+
+// if ( currentPassword === req.currentUser.password) {
+//   { $and: [{ "email": ewqewqe }, { "newpassword":req.body.currentPassword }, ], }
+
+// }

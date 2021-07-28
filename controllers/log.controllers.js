@@ -7,7 +7,13 @@ module.exports.viewLog = (req, res, next) => {
     .populate('comments')
     .then((log) => {
       console.log(req.user)
-      res.render("detail", { log: log, isCurrentUser: log.owner.toString() === req.user._id.toString()});
+      const copiedLog = log.toJSON();
+      
+      copiedLog.comments.map((comment) => {
+        comment.isCurrentUser = comment.userId.toString() === req.user._id.toString(); 
+        return comment
+      })
+      res.render("detail", { log: copiedLog, isCurrentUser: log.owner.toString() === req.user._id.toString()});
     })
     .catch(next)
 };

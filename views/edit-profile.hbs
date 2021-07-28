@@ -4,7 +4,7 @@
 
   <div class="js-upload" uk-form-custom>
     <label for="image"></label>
-    <img src="{{currentUser.avatar}}" width="100" height="100" id='image-preview' class="uk-border-circle uk-margin-medium-right" alt="">
+    <img src="{{currentUser.avatar}}" width="100" height="100" id='image-preview' class="uk-border-circle uk-margin-medium-right hidden" alt="">
     <input name='image' class=' uk-margin-small-left' id='image' type="file">
     <a class="" type="button" tabindex="-1">Select a profile picture</a>
   </div>
@@ -50,7 +50,7 @@
   imgInp.onchange = evt => {
   const [file] = imgInp.files
   if (file) {
-    {{!-- imgPreview.classList.remove('hidden') --}}
+    imgPreview.classList.remove('hidden')
     imgPreview.src = URL.createObjectURL(file)
   }
 }

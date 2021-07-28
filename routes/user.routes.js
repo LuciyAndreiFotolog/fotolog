@@ -31,8 +31,8 @@ router.post('/logout', authController.logout);
 
 router.get('/:id/edit-profile', authMiddleware.isAuthenticated, usersController.editProfile);
 router.post('/:id/edit-profile', authMiddleware.isAuthenticated,  upload.single('image'), usersController.doEditProfile);
-router.get('/:id/configuration', authController.changePassword);
-router.post('/:id/configuration', authController.doChangePassword)
+router.get('/:id/configuration', authMiddleware.isAuthenticated, authController.changePassword);
+router.post('/:id/configuration', authMiddleware.isAuthenticated, authController.doChangePassword)
 router.get('/:id', usersController.profile);
 
 module.exports = router;
