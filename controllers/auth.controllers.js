@@ -136,8 +136,3 @@ module.exports.contrasenia = (req, res, next) => {
   })
   .catch(next)
 }
-
-// if ( currentPassword === req.currentUser.password) {
-//   { $and: [{ "email": ewqewqe }, { "newpassword":req.body.currentPassword }, ], }
-
-// }
