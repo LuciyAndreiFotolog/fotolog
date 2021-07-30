@@ -33,7 +33,7 @@
               <div class='uk-flex uk-flex-between'>
                 <p class='uk-margin-medium-left'>"{{comment.body}}"</p>
                 {{#if comment.isCurrentUser}}
-                  <form action="/logs/comments/{{comment.id}}/delete" method="POST">
+                  <form action="/logs/comments/{{comment._id}}/delete" method="POST">
                     <button type ='button submit' class="" uk-close>
                     </button>
                   </form>
