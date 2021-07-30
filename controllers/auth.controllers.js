@@ -1,6 +1,7 @@
 const User = require('../models/user.model');
 const mongoose = require('mongoose');
 const passport = require('passport');
+const mailer = require('../config/mailer.config');
 
 module.exports.register = (req, res, next) => {
   res.render('auth/register')
@@ -11,7 +12,8 @@ module.exports.doRegister = (req, res, next) => {
     .then((user) => {
       if (!user) {
         User.create(req.body)
-          .then(() => {
+          .then((newUser) => {
+            mailer.sendActivationMail(newUser.email, newUser.activationToken)
             res.redirect('/')
           })
           .catch(e => {
@@ -92,15 +94,12 @@ module.exports.logout = (req, res, next) => {
 };
 
 module.exports.changePassword = (req, res, next) => {
-  console.log(req.user)
   res.render('auth/configuration')
 };
 
 module.exports.doChangePassword = (req, res, next) => {
 
   const { newPassword } = req.body;
-  // User.findOneAndUpdate({email: req.user.email }, { password: newPassword })
-  console.log(req.body)
     User.findOne({email: req.user.email})
     .then((user) => {
 
@@ -117,22 +116,22 @@ module.exports.doChangePassword = (req, res, next) => {
     .catch(next)
 };
 
-module.exports.contrasenia = (req, res, next) => {
+module.exports.activateAccount = (req, res, next) => {
+  const token = req.params.token;
 
-  const { newPassword } = req.body;
-
-  User.findOne({ $and: [{ "email": req.user.email }, { "currentPassword":req.body.currentPassword }, ], })
-  .then((user) => {
-
-    if (user) {
-      user.password = newPassword;
-      return user.save()
-      .then((response) => {
-        res.redirect('/users/me')
-      })
-    }
-
-    
-  })
-  .catch(next)
+  User.findOneAndUpdate(
+    { activationToken: token, active: false },
+    { active: true }
+  )
+    .then((user) => {
+      if (user) {
+        res.render("auth/login", {
+          user: { email: user.email },
+          message: "You have activated your account. Thanks for joining!"
+        })
+      } else {
+        res.redirect("/")
+      }
+    })
+    .catch(next)
 }

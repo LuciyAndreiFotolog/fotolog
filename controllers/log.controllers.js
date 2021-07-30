@@ -6,7 +6,6 @@ module.exports.viewLog = (req, res, next) => {
   Log.findById(id)
     .populate('comments')
     .then((log) => {
-      console.log(req.user)
       const copiedLog = log.toJSON();
       
       copiedLog.comments.map((comment) => {

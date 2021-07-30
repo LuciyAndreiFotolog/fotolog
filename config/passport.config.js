@@ -111,7 +111,4 @@ passport.use('facebook-auth', new FacebookStrategy({
   } else {
     next(null, false, { error: 'Error connecting with Facebook'})
   }
-}))
-
-
-
+}));

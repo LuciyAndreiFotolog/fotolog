@@ -5,26 +5,16 @@ const paginate = require('express-paginate');
 
 module.exports.search = (req, res, next) => {
   const { search } = req.query;
-  console.log(req.query)
   User.findOne({ username: { $regex : new RegExp(search, "i") } } )
     .populate({path: 'logs', options: { sort: { 'createdAt': -1 } } })
     .then((user) => {
       res.render('profile', { user:user })
     })
     .catch(next)
-}
-
-module.exports.feed = (req, res, next) => {
-  Log.find({})
-    .sort({'createdAt': -1})
-    .then((logs) => {
-      res.render('home', { logs:logs })
-    })
-    .catch(next)
 };
 
 module.exports.paginatedFeed = async (req, res, next) => {
-  console.log(req.query.pageCount)
+
   try {
  
     const [ results, itemCount ] = await Promise.all([
@@ -36,7 +26,7 @@ module.exports.paginatedFeed = async (req, res, next) => {
     const pages = paginate.getArrayPages(req)(3, pageCount, req.query.page);
     const previous = req.query.page != 1 ? pages[0] : undefined;
     const next = pages[pages.length - 1].page === req.query.page ? undefined : pages[pages.length -1];
-    console.log(pages)
+
         res.render('home', {
         logs: results,
         pageCount,
@@ -49,5 +39,4 @@ module.exports.paginatedFeed = async (req, res, next) => {
   } catch (err) {
     next(err);
   }
-
-} 
+};

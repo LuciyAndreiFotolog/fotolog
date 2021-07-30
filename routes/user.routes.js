@@ -35,4 +35,6 @@ router.get('/:id/configuration', authMiddleware.isAuthenticated, authController.
 router.post('/:id/configuration', authMiddleware.isAuthenticated, authController.doChangePassword)
 router.get('/:id', usersController.profile);
 
+router.get('/activate/:token', authController.activateAccount)
+
 module.exports = router;
